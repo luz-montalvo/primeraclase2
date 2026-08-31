@@ -12,6 +12,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.12.1</junit.version>
+        <gluonfx.target>host</gluonfx.target>
+
+        <gluonfx.plugin.version>1.0.29</gluonfx.plugin.version>
+
     </properties>
 
     <dependencies>
@@ -56,6 +60,39 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>com.gluonhq</groupId>
+                <artifactId>gluonfx-maven-plugin</artifactId>
+                <version>${gluonfx.plugin.version}</version>
+                <configuration>
+                    <target>${gluonfx.target}</target>
+                    <mainClass>pe.edu.upeu.algoritmogui.Launcher</mainClass>
+                    <appIdentifier>pe.edu.upeu.algoritmogui</appIdentifier>
+
+                    <!-- Ponlo a true la primera vez: verás qué está pasando -->
+                    <verbose>true</verbose>
+
+                    <!-- Descomenta si no puedes usar la variable GRAALVM_HOME
+                    <graalvmHome>/ruta/a/graalvm</graalvmHome>
+                    -->
+
+                    <!-- Activa esto solo si el binario no arranca por falta de GPU -->
+                    <!-- <enableSWRendering>true</enableSWRendering> -->
+
+                    <!-- CRÍTICO: Registrar clases que JavaFX instancia por reflexión -->
+                    <reflectionList>
+                        <list>pe.edu.upeu.algoritmogui.HelloApplication</list>
+                        <list>pe.edu.upeu.algoritmogui.MatrizTriangular</list>
+                    </reflectionList>
+
+                    <releaseConfiguration>
+                        <vendor>Mi Empresa S.A.</vendor>
+                        <description>Mi aplicación nativa</description>
+                        <version>1.0.0</version>
+                    </releaseConfiguration>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
@@ -64,7 +101,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>pe.edu.upeu.algoritmogui/pe.edu.upeu.algoritmogui.HelloApplication</mainClass>
+                            <mainClass>pe.edu.upeu.algoritmogui/pe.edu.upeu.algoritmogui.MatrizTriangular</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
