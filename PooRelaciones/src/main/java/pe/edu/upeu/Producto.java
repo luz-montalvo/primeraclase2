@@ -1,5 +1,4 @@
 package pe.edu.upeu;
-
 //Nombre de Clase
 public class Producto {
 
