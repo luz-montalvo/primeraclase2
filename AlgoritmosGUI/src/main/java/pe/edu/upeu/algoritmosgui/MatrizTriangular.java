@@ -1,4 +1,4 @@
-package pe.edu.upeu.algoritmogui;
+package pe.edu.upeu.algoritmosgui;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
