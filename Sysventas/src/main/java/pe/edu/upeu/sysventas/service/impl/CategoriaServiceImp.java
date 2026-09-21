@@ -10,7 +10,8 @@ import pe.edu.upeu.sysventas.service.ICategoriaService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriaServiceImp extends CrudGenericoServiceImp<Categoria,Long> implements ICategoriaService {
+public class CategoriaServiceImp extends CrudGenericoServiceImp<Categoria, Long> implements ICategoriaService {
+
     private final CategoriaRepository categoriaRepository;
 
     public CategoriaServiceImp(CategoriaRepository categoriaRepository) {
@@ -23,15 +24,18 @@ public class CategoriaServiceImp extends CrudGenericoServiceImp<Categoria,Long> 
     }
 
     @Override
-    public List<ComboBoxOption> listarCategoria() {
-        List<ComboBoxOption>listar=new ArrayList<>();
-        for (TipoProducto tp:TipoProducto.values()){
+    public List<ComboBoxOption> lisCategoria() {
+        if(categoriaRepository.findAll().isEmpty()) {
+            categoriaRepository.seedData();
+        }
+
+        List<ComboBoxOption> listar=new ArrayList<>();
+        for (Categoria cat:categoriaRepository.findAll()){
             ComboBoxOption cb=new ComboBoxOption();
-            cb.setKey(tp.name());
-            cb.setValue(tp.getDescripcion());
+            cb.setKey(String.valueOf(cat.getIdCategoria()));
+            cb.setValue(cat.getNombre());
             listar.add(cb);
         }
         return listar;
     }
-}
 }

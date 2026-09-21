@@ -8,9 +8,8 @@ import java.util.List;
 @Getter
 @Setter
 public class Perfil {
-    Long idePerfil;
+    Long idPerfil;
     String nombre;
     String codigo;
-    List<Acceso> accesos;//agregacion
-
+    List<Acceso> accesos; //Agregacion
 }

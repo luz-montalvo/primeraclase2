@@ -1,5 +1,6 @@
 package pe.edu.upeu.sysventas.enums;
-import  lombok.Getter;
+
+import lombok.Getter;
 
 @Getter
 public enum TipoProducto {
@@ -8,7 +9,9 @@ public enum TipoProducto {
     SERVICIO("Servicio");
 
     String descripcion;
+
     TipoProducto(String descripcion){
         this.descripcion=descripcion;
     }
+
 }
