@@ -24,7 +24,7 @@ public class UnidadMedidaRepository extends AbstractJpaRepository<UnidMedida, Lo
         if (findAll().isEmpty()) {
             save(new UnidMedida(generateId(), "Unidad"));
             save(new UnidMedida(generateId(),"litros"));
-
+            save(new UnidMedida(generateId(),"prendas"));
         }
     }
 }
