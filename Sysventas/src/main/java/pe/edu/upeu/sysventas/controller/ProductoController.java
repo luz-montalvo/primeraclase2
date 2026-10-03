@@ -222,7 +222,7 @@ public class ProductoController {
 
         cbxTipoProducto.getSelectionModel().select(
                 cbxTipoProducto.getItems().stream()
-                        .filter(m -> m.getKey() == producto.getTipoProducto().name())
+                        .filter(m -> m.getKey().equals(producto.getTipoProducto().name()))
                         .findFirst().orElse(null));
 
         cbxMarca.getSelectionModel().select(

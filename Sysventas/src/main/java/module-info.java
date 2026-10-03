@@ -7,6 +7,7 @@ module pe.edu.upeu.sysventas {
     requires static lombok;
 
     requires jakarta.validation;
+    requires javafx.graphics;
     opens pe.edu.upeu.sysventas.controller to javafx.fxml;
     opens pe.edu.upeu.sysventas to javafx.fxml;
     opens pe.edu.upeu.sysventas.model;
