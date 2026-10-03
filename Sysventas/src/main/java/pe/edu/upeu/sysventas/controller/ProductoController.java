@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import pe.edu.upeu.sysventas.components.ColumnInfo;
 import pe.edu.upeu.sysventas.components.TableViewHelper;
@@ -23,6 +25,7 @@ import pe.edu.upeu.sysventas.service.ICategoriaService;
 import pe.edu.upeu.sysventas.service.IMarcaService;
 import pe.edu.upeu.sysventas.service.IProductoService;
 import pe.edu.upeu.sysventas.service.IUnidadMedidaService;
+
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -51,9 +54,9 @@ public class ProductoController {
     private Validator validator;
     private final ToltipCustom ttc=new ToltipCustom();
 
+
     @FXML
     public void initialize(){
-
         System.out.println("Holasss");
         cbxTipoProducto.getItems().addAll(ps.listarTipoProducto());
 
@@ -80,7 +83,7 @@ public class ProductoController {
         };
         Consumer<Producto> deleteAction= p->{
             ps.delete(p.getIdProducto());
-            Stage stage = (Stage)  miContenedor.getScene().getWindow();
+            Stage stage = (Stage) miContenedor.getScene().getWindow();
             double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
             Toast.showToast(stage, "Se eliminó correctamente!!", 2000, w, h);
             listar();
@@ -90,11 +93,7 @@ public class ProductoController {
                 updateAction, deleteAction);
         tableView.setTableMenuButtonVisible(true);
         listar();
-        }
-        public void setStage(Stage stage) {
-        this.stage = stage;
-        System.out.println("Llego"+stage.getTitle());
-         }
+    }
 
     public void listar(){
         try {
@@ -104,6 +103,10 @@ public class ProductoController {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    public void setStage(Stage stage) {
+        this.stage = stage;
+        System.out.println("Llego"+stage.getTitle());
     }
 
     @FXML
@@ -132,8 +135,6 @@ public class ProductoController {
                 : cbxUnidadMedida.getSelectionModel().getSelectedItem().getKey();
         formulario.setIdUnidad(idxUM.equals("0") ? null : ums.findById(Long.parseLong(idxUM)));
 
-
-
         Set<ConstraintViolation<Producto>> violaciones = validator.validate(formulario);
         List<ConstraintViolation<Producto>> violacionesOrdenadas = violaciones.stream()
                 .sorted(Comparator.comparing(v -> v.getPropertyPath().toString())).toList();
@@ -146,6 +147,7 @@ public class ProductoController {
         }
 
     }
+
     private void mostrarErroresValidacion(List<ConstraintViolation<Producto>> violaciones) {
         limpiarError();
         Map<String, Control> campos = new LinkedHashMap<>();
@@ -183,10 +185,11 @@ public class ProductoController {
             if (primerCtrl[0] != null) Platform.runLater(primerCtrl[0]::requestFocus);
         }
     }
+
     private void procesarFormulario() {
         lbnMsg.setText("Formulario válido");
         lbnMsg.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
-        Stage stage = (Stage)  miContenedor.getScene().getWindow();
+        Stage stage = (Stage) miContenedor.getScene().getWindow();
 
         limpiarError();
         double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;

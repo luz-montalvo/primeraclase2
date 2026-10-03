@@ -12,30 +12,31 @@ import pe.edu.upeu.sysventas.config.AppContext;
 import java.io.IOException;
 import java.util.Map;
 
-public class MianguiController {
-    @FXML
+public class MainguiController {
+
+   @FXML
     BorderPane bp;
 
-    @FXML
+   @FXML
     MenuBar menuBar;
 
-    @FXML
+   @FXML
     MenuItem menuItem1, menuItem2;
 
-    @FXML
+   @FXML
     TabPane tabPane;
 
-    @FXML
-    public void initialize(){
-        System.out.println("Hola .. te   ejecutaste");
-        MenuItemListener miL=new MenuItemListener();
-        menuItem1.setOnAction(miL::handle);
-        menuItem2.setOnAction(miL::handle);
-
-    }
+   @FXML
+   public void initialize(){
+       System.out.println("Hola...te ejecutaste");
+       MenuItemListener miL=new MenuItemListener();
+       menuItem1.setOnAction(miL::handle);
+       menuItem2.setOnAction(miL::handle);
+   }
 
 
     class MenuItemListener{
+
         Map<String, String[]> menuConfig= Map.of(
                 "menuItem1", new String[]{"/view/main_producto.fxml", "Adm. Producto", "T"},
                 "menuItem2", new String[]{"/view/login.fxml", "Salir", "C"}
@@ -73,6 +74,6 @@ public class MianguiController {
         }
     }
 
+
+
 }
-
-
