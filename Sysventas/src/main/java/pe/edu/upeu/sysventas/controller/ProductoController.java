@@ -125,8 +125,10 @@ public class ProductoController {
 
         String idxM = cbxMarca.getSelectionModel().getSelectedItem() == null ? "0"
                 : cbxMarca.getSelectionModel().getSelectedItem().getKey();
+
         formulario.setIdMarca(idxM.equals("0") ? null : ms.findById(Long.parseLong(idxM)));
 
+        System.out.println("hola"+idxM);
         String idxC = cbxCategoria.getSelectionModel().getSelectedItem() == null ? "0"
                 : cbxCategoria.getSelectionModel().getSelectedItem().getKey();
         formulario.setIdCategoria(idxC.equals("0") ? null : cs.findById(Long.parseLong(idxC)));
