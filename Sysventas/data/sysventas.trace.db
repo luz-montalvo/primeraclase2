@@ -1,0 +1,142 @@
+2026-10-09 13:37:34.393891Z database: flush
+org.h2.message.DbException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/desarrollo/primeraclase2/SysVentas/data/sysventas.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/desarrollo/primeraclase2/SysVentas/data/sysventas.mv.db [2.3.232/7]" [50000-232]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:407)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:291)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:2035)
+	at org.h2.mvstore.db.Store.<init>(Store.java:133)
+	at org.h2.engine.Database.<init>(Database.java:326)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:344)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:124)
+	at org.h2.Driver.connect(Driver.java:59)
+	at com.intellij.database.remote.jdbc.helpers.JdbcHelperImpl.connect(JdbcHelperImpl.java:832)
+	at com.intellij.database.remote.jdbc.impl.RemoteDriverImpl.connect(RemoteDriverImpl.java:50)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:351)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:166)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:543)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:744)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Error General : "org.h2.mvstore.MVStoreException: The file is locked: D:/desarrollo/primeraclase2/SysVentas/data/sysventas.mv.db [2.3.232/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/desarrollo/primeraclase2/SysVentas/data/sysventas.mv.db [2.3.232/7]" [50000-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 27 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/desarrollo/primeraclase2/SysVentas/data/sysventas.mv.db [2.3.232/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
+	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
+	... 21 more
+2026-10-09 13:37:58.817384Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:478)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:351)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:166)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:543)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:744)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-09 13:38:51.920359Z jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1624)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.setClientInfo(RemoteConnectionImpl.java:478)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:351)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:166)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:543)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:744)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:623)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-10-09 08:44:36.206604-05:00 jdbc[3]: exception
+java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supported.
+	at org.h2.jdbc.JdbcConnection.setClientInfo(JdbcConnection.java:1619)
+	at org.jkiss.dbeaver.ext.generic.model.GenericDataSource.populateClientAppName(GenericDataSource.java:198)
+	at org.jkiss.dbeaver.ext.generic.model.GenericDataSource.openConnection(GenericDataSource.java:161)
+	at org.jkiss.dbeaver.ext.h2.model.H2DataSource.openConnection(H2DataSource.java:81)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCExecutionContext.connect(JDBCExecutionContext.java:110)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCRemoteInstance.lambda$initializeMainContext$0(JDBCRemoteInstance.java:106)
+	at org.jkiss.dbeaver.model.exec.DBExecUtils.tryOpenContext(DBExecUtils.java:1161)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCRemoteInstance.initializeMainContext(JDBCRemoteInstance.java:105)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCRemoteInstance.<init>(JDBCRemoteInstance.java:60)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCDataSource.initializeRemoteInstance(JDBCDataSource.java:124)
+	at org.jkiss.dbeaver.ext.generic.model.GenericDataSource.<init>(GenericDataSource.java:124)
+	at org.jkiss.dbeaver.ext.h2.model.H2DataSource.<init>(H2DataSource.java:44)
+	at org.jkiss.dbeaver.ext.h2.model.H2MetaModel.createDataSourceImpl(H2MetaModel.java:58)
+	at org.jkiss.dbeaver.ext.generic.GenericDataSourceProvider.openDataSource(GenericDataSourceProvider.java:60)
+	at org.jkiss.dbeaver.ext.generic.GenericDataSourceProvider.openDataSource(GenericDataSourceProvider.java:36)
+	at org.jkiss.dbeaver.registry.DataSourceDescriptor.openDataSource(DataSourceDescriptor.java:1403)
+	at org.jkiss.dbeaver.registry.DataSourceDescriptor.connect0(DataSourceDescriptor.java:1205)
+	at org.jkiss.dbeaver.registry.DataSourceDescriptor.connect(DataSourceDescriptor.java:1060)
+	at org.jkiss.dbeaver.runtime.jobs.ConnectJob.run(ConnectJob.java:79)
+	at org.jkiss.dbeaver.runtime.jobs.ConnectionTestJob.run(ConnectionTestJob.java:104)
+	at org.jkiss.dbeaver.model.runtime.AbstractJob.run(AbstractJob.java:110)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+2026-10-09 08:51:34.041821-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "\000a//*CREATE TABLE IF NOT EXISTS emisor (\000a                                      [*]id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\000a                                      ruc              VARCHAR(20) NOT NULL,\000a    nombre_comercial VARCHAR(60) NOT NULL,\000a    ubigeo           VARCHAR(10) NOT NULL,\000a    domicilio_fiscal VARCHAR(60) NOT NULL,\000a    urbanizacion     VARCHAR(40) NOT NULL,\000a    departamento     VARCHAR(30) NOT NULL,\000a    provincia        VARCHAR(30) NOT NULL,\000a    distrito         VARCHAR(30) NOT NULL\000a    )"; se esperaba "INSERT"
+Syntax error in SQL statement "\000a//*CREATE TABLE IF NOT EXISTS emisor (\000a                                      [*]id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\000a                                      ruc              VARCHAR(20) NOT NULL,\000a    nombre_comercial VARCHAR(60) NOT NULL,\000a    ubigeo           VARCHAR(10) NOT NULL,\000a    domicilio_fiscal VARCHAR(60) NOT NULL,\000a    urbanizacion     VARCHAR(40) NOT NULL,\000a    departamento     VARCHAR(30) NOT NULL,\000a    provincia        VARCHAR(30) NOT NULL,\000a    distrito         VARCHAR(30) NOT NULL\000a    )"; expected "INSERT"; SQL statement:
+
+//*CREATE TABLE IF NOT EXISTS emisor (
+                                      id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+                                      ruc              VARCHAR(20) NOT NULL,
+    nombre_comercial VARCHAR(60) NOT NULL,
+    ubigeo           VARCHAR(10) NOT NULL,
+    domicilio_fiscal VARCHAR(60) NOT NULL,
+    urbanizacion     VARCHAR(40) NOT NULL,
+    departamento     VARCHAR(30) NOT NULL,
+    provincia        VARCHAR(30) NOT NULL,
+    distrito         VARCHAR(30) NOT NULL
+    ) [42001-240]
+2026-10-09 08:51:37.751841-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "\000a//*CREATE TABLE IF NOT EXISTS emisor (\000a                                      [*]id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\000a                                      ruc              VARCHAR(20) NOT NULL,\000a    nombre_comercial VARCHAR(60) NOT NULL,\000a    ubigeo           VARCHAR(10) NOT NULL,\000a    domicilio_fiscal VARCHAR(60) NOT NULL,\000a    urbanizacion     VARCHAR(40) NOT NULL,\000a    departamento     VARCHAR(30) NOT NULL,\000a    provincia        VARCHAR(30) NOT NULL,\000a    distrito         VARCHAR(30) NOT NULL\000a    )"; se esperaba "INSERT"
+Syntax error in SQL statement "\000a//*CREATE TABLE IF NOT EXISTS emisor (\000a                                      [*]id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\000a                                      ruc              VARCHAR(20) NOT NULL,\000a    nombre_comercial VARCHAR(60) NOT NULL,\000a    ubigeo           VARCHAR(10) NOT NULL,\000a    domicilio_fiscal VARCHAR(60) NOT NULL,\000a    urbanizacion     VARCHAR(40) NOT NULL,\000a    departamento     VARCHAR(30) NOT NULL,\000a    provincia        VARCHAR(30) NOT NULL,\000a    distrito         VARCHAR(30) NOT NULL\000a    )"; expected "INSERT"; SQL statement:
+
+//*CREATE TABLE IF NOT EXISTS emisor (
+                                      id_emisor        INTEGER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+                                      ruc              VARCHAR(20) NOT NULL,
+    nombre_comercial VARCHAR(60) NOT NULL,
+    ubigeo           VARCHAR(10) NOT NULL,
+    domicilio_fiscal VARCHAR(60) NOT NULL,
+    urbanizacion     VARCHAR(40) NOT NULL,
+    departamento     VARCHAR(30) NOT NULL,
+    provincia        VARCHAR(30) NOT NULL,
+    distrito         VARCHAR(30) NOT NULL
+    ) [42001-240]
+2026-10-09 08:56:25.581703-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+
+(1, 'Samsung'),
+(1, 'Lenovo') [42001-240]
+2026-10-09 08:56:33.874544-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+
+(1, 'Samsung'),
+(1, 'Lenovo') [42001-240]
+2026-10-09 08:57:01.092194-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "\000a([*]1, 'Samsung'),\000a(1, 'Lenovo')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+
+(1, 'Samsung'),
+(1, 'Lenovo') [42001-240]
