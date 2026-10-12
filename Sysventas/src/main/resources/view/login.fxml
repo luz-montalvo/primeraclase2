@@ -50,7 +50,7 @@
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-border-radius: 3; -fx-border-color: #b5abd1;" GridPane.columnSpan="2147483647">
                      <children>
                         <Label layoutX="87.0" layoutY="6.0" text="Usuario" />
-                        <TextField layoutX="179.0" layoutY="9.0" />
+                        <TextField fx:id="usuario" layoutX="179.0" layoutY="9.0" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" />
@@ -61,7 +61,7 @@
                   </AnchorPane>
                   <AnchorPane style="-fx-border-radius: 3; -fx-border-color: #b5abd1;" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                      <children>
-                        <PasswordField layoutX="178.0" layoutY="6.0" />
+                        <PasswordField fx:id="clave" layoutX="178.0" layoutY="6.0" />
                         <Label layoutX="91.0" layoutY="11.0" text="Clave" />
                      </children>
                      <GridPane.margin>
@@ -84,12 +84,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ingresar">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#login" text="Ingresar">
                            <GridPane.margin>
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cerrar" GridPane.columnIndex="1">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#logout" text="Cerrar" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="5.0" />
                            </GridPane.margin>
