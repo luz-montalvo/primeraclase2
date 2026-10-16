@@ -13,10 +13,18 @@ import javafx.util.Duration;
 
 public class Toast {
 
-    public static void showToast(Stage ownerStage, String message, int durationInMillis, double x, double y) {
+    public static void showToast(Stage ownerStage, String message,String colorFondo,int durationInMillis, double x, double y){
+     showToastMain(ownerStage,message,colorFondo,durationInMillis,x,y );
+
+    }
+    public static void showToastMain(Stage ownerStage, String message,String colorFondo,int durationInMillis, double x, double y){
         // Crear una etiqueta con el mensaje del toast
+
+        if(colorFondo.isEmpty()){
+            colorFondo="#00FF99";
+        }
         Label label = new Label(message);
-        label.setStyle("-fx-background-color: #00FF99; -fx-text-fill: black; "
+        label.setStyle("-fx-background-color: "+colorFondo+"; -fx-text-fill: black; "
                 + "-fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
         label.setOpacity(0);  // Inicialmente invisible
 
@@ -47,6 +55,12 @@ public class Toast {
         fadeIn.play();
         fadeIn.setOnFinished(event -> delay.play());
         fadeOut.setOnFinished(event -> popup.hide());  // Ocultar popup al finalizar fade out
+    }
+
+
+    public static void showToast(Stage ownerStage, String message, int durationInMillis, double x, double y) {
+        showToastMain(ownerStage,message,"",durationInMillis,x,y );
+
     }
 }
 
