@@ -17,6 +17,7 @@ module pe.edu.upeu.sysventas {
 
     requires jakarta.validation;
     requires javafx.graphics;
+    requires org.jsoup;
     opens pe.edu.upeu.sysventas.controller to javafx.fxml;
     opens pe.edu.upeu.sysventas to javafx.fxml;
     opens pe.edu.upeu.sysventas.model;
