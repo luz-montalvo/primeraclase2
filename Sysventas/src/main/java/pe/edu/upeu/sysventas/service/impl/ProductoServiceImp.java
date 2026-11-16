@@ -37,14 +37,12 @@ public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> i
         return listar;
     }
 
-
     @Override
     public List<Producto> findAll() {
-
         return productoRepository.findAll();
     }
 
-@Override
+    @Override
     public List<ModeloDataAutocomplet> listAutoCompletProducto() {
         List<ModeloDataAutocomplet> listarProducto = new ArrayList<>();
         try {
@@ -60,5 +58,6 @@ public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> i
         }
         return listarProducto;
     }
+
 
 }

@@ -9,9 +9,11 @@ import java.util.Optional;
 
 public class UsuarioServiceImp extends CrudGenericoServiceImp<Usuario,Long> implements IUsuarioService {
     private final UsuarioRepository repo;
+
     public UsuarioServiceImp(UsuarioRepository repo) {
         this.repo = repo;
     }
+
     @Override
     protected ICrudGenericoRepository<Usuario, Long> getRepo() {
         return repo;

@@ -14,21 +14,17 @@ public class VentaRepository extends AbstractJpaRepository<Venta, Long> {
     @Override protected String getPkColumn()  { return "id_venta"; }
 
     @Override
-    protected String getShema() {
-        return "public";
-    }
-
-    @Override
     protected Venta mapRow(ResultSet rs) throws SQLException {
         // Construye cliente con nombre si la columna existe (viene del JOIN en findById)
         Cliente.ClienteBuilder cliBuilder = Cliente.builder()
-                .dniruc(rs.getString("dniruc"))
-            .nombres(rs.getString("nombres"));
+                        .dniruc(rs.getString("dniruc"))
+                .nombres(rs.getString("nombres"));
 
         //try { cliBuilder.nombres(rs.getString("nombres")); } catch (SQLException ignored) {}
 
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(rs.getLong("id_usuario"));
+
         Venta v=new Venta();
         v.setId(rs.getLong("id_venta"));
         v.setPrecioBase(rs.getDouble("precio_base"));
@@ -45,12 +41,13 @@ public class VentaRepository extends AbstractJpaRepository<Venta, Long> {
         v.setTipoDoc(rs.getString("tipo_doc"));
 
         return v;
-        /*return Venta.builder()
+
+       /* return Venta.builder()
                 .id(rs.getLong("id_venta"))
                 .precioBase(rs.getDouble("precio_base"))
                 .igv(rs.getDouble("igv"))
                 .precioTotal(rs.getDouble("precio_total"))
-                .dniruc(cliBuilder)
+                .dniruc(cliBuilder.build())
                 .idUsuario(usuario)
                 .numDoc(rs.getString("num_doc"))
                 .fechaGener(rs.getTimestamp("fecha_gener")

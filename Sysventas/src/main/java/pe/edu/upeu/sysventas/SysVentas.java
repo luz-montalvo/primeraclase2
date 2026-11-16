@@ -24,7 +24,7 @@ public class SysVentas extends Application {
         Scene scene = new Scene(fxmlLoader.load());
 
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-        stage.setTitle("Sistema de ventas");
+        stage.setTitle("Sistema de ventas!");
         stage.setResizable(true);
         stage.setScene(scene);
         stage.show();
@@ -35,5 +35,4 @@ public class SysVentas extends Application {
         // Libera las conexiones del pool al cerrar la ventana.
         DatabaseConfig.shutdown();
     }
-
 }

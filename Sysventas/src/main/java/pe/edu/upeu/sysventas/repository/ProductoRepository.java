@@ -14,6 +14,7 @@ import java.util.Optional;
 
 public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
 
+
     @Override
     protected String getTableName() {
         return "producto";
@@ -23,25 +24,27 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
     protected String getPkColumn() {
         return "id_producto";
     }
-    @Override
-    protected String getShema() {
-        return "public";
-    }
+
+
     private static final String SELECT_JOIN =
             "SELECT p.*, c.nombre AS cat_nombre, m.nombre AS mar_nombre, " +
-                    "u.nombre_medida FROM public.producto p " +
-                    "JOIN public.categoria c ON p.id_categoria = c.id_categoria " +
-                    "JOIN public.marca m ON p.id_marca = m.id_marca " +
-                    "JOIN public.unid_medida u ON p.id_unidad = u.id_unidad ";
+                    "u.nombre_medida FROM producto p " +
+                    "JOIN categoria c ON p.id_categoria = c.id_categoria " +
+                    "JOIN marca m ON p.id_marca = m.id_marca " +
+                    "JOIN unid_medida u ON p.id_unidad = u.id_unidad ";
+
     @Override public List<Producto> findAll() { return executeQuery(SELECT_JOIN); }
+
     @Override public Optional<Producto> findById(Long id) {
         return executeQueryOne(SELECT_JOIN + "WHERE p.id_producto = ?", id);
     }
 
+
     @Override
     protected Producto insert(Connection connection, Producto entity) throws SQLException {
         long id = executeInsertGetKey(connection,
-                "INSERT INTO public.producto(nombre,pu,puold,utilidad,stock,stockold,id_categoria,id_marca,id_unidad, tipo_producto) VALUES(?,?,?,?,?,?,?,?,?, ?)",
+                "INSERT INTO producto(nombre,pu,puold,utilidad,stock,stockold,id_categoria,id_marca,id_unidad, tipo_producto) " +
+                        " VALUES(?,?,?,?,?,?,?,?,?, ?)",
                 entity.getNombre(),
                 entity.getPu(),
                 entity.getPuold(),
@@ -54,13 +57,14 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                 entity.getTipoProducto().name()
         );
         entity.setIdProducto(id); return entity;
-
     }
 
     @Override
     protected Producto updateRow(Connection connection, Producto entity) throws SQLException {
         executeUpdate(connection,
-                "UPDATE public.producto SET nombre=?,pu=?,puold=?,utilidad=?,stock=?,stockold=?,id_categoria=?,id_marca=?,id_unidad=?,tipo_producto=? WHERE id_producto=?",
+                "UPDATE producto SET nombre=?,pu=?,puold=?,utilidad=?,stock=?,stockold=?, " +
+                        "id_categoria=?,id_marca=?,id_unidad=?,tipo_producto=? " +
+                        "WHERE id_producto=?",
                 entity.getNombre(),
                 entity.getPu(),
                 entity.getPuold(),
@@ -72,7 +76,8 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
                 entity.getIdUnidad().getIdUnidad(),
                 entity.getTipoProducto().name(),
                 entity.getIdProducto());
-        return entity;    }
+        return entity;
+    }
 
     @Override
     protected Producto mapRow(ResultSet rs) throws SQLException {
@@ -96,14 +101,17 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
 
                 .idUnidad(UnidMedida.builder()
                         .idUnidad(rs.getLong("id_unidad"))
-                        .nombreMedida(rs.getString("nombre_medida"))
-                        .build()).build();
+                        .nombreMedida(rs.getString("nombre_medida")).build())
+                .build();
     }
+
     public List<Producto> listAutoCompletProducto(String filter) {
         return executeQuery(SELECT_JOIN + "WHERE p.nombre LIKE ?", filter);
     }
+
     public List<Producto> listProductoMarca(Integer filter) {
         return executeQuery(SELECT_JOIN + "WHERE p.id_marca = ?", filter);
     }
+
 
 }

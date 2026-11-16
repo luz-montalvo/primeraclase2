@@ -19,11 +19,6 @@ public class UsuarioRepository extends AbstractJpaRepository<Usuario, Long> {
     protected String getPkColumn() {return "id_usuario";}
 
     @Override
-    protected String getShema() {
-        return "";
-    }
-
-    @Override
     public List<Usuario> findAll() {
         return executeQuery(SELECT_JOIN);
     }

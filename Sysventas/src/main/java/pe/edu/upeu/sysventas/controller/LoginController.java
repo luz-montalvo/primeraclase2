@@ -23,80 +23,83 @@ import pe.edu.upeu.sysventas.service.IUsuarioService;
 @RequiredArgsConstructor
 public class LoginController {
 
-    final private IUsuarioService u;
+      final private IUsuarioService u;
 
-    @FXML
-    TextField usuario;
-    @FXML
-    PasswordField clave;
-
-    @FXML public void  initialize(){
-
-    }
-
-    @FXML
-    public void login(ActionEvent e){
-        try{
-            u.loginUsuario(usuario.getText(),clave.getText()).ifPresentOrElse(
-                    usu ->{
-                        abrirMain(e, usu);
-                    },
-                    ()->{
-                        mensajeError(e, "Error en las credenciales .. intente nuevamente!! ");
-                    });
-        }catch (Exception ex){
-            throw new RuntimeException(ex);
-        }
+      @FXML TextField usuario;
+      @FXML PasswordField clave;
 
 
+      @FXML
+      public void initialize(){
 
-    }
+      }
 
-    public void mensajeError(ActionEvent e, String msg){
-        Stage stage= (Stage) ((Node)e.getSource()).getScene().getWindow();
-        double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
-        Toast.showToast(stage,msg, "#FEA1B6",2000, w, h);
+       @FXML
+      public void login(ActionEvent e){
+          try {
+              u.loginUsuario(usuario.getText(), clave.getText())
+                      .ifPresentOrElse(
+                              usu->{
+                                  abrirMain(e, usu);
+                              },
+                              ()->{
+                                    mensajeError(e,"Error en las credenciales...intente nuevamente!!");
+                              });
 
-    }
-
-    private  void  abrirMain(ActionEvent event, Usuario usu){
-        try {
-            SessionManager.getInstance().setUserId(usu.getIdUsuario());
-            SessionManager.getInstance().setUserName(usu.getUsuario());
-            SessionManager.getInstance().setUserPerfil(usu.getIdPerfil().getNombre());
+          } catch (Exception ex) {
+              throw new RuntimeException(ex);
+          }
+      }
 
 
-            AppContext context=AppContext.getInstance();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/maingui.fxml"));
-            fxmlLoader.setControllerFactory(context::getBean);
-            Screen screen= Screen.getPrimary();
-            Rectangle2D r2d=screen.getVisualBounds();
-            Scene scene = new Scene(fxmlLoader.load(), r2d.getWidth(), r2d.getHeight()-50);
+      public void mensajeError(ActionEvent e, String msg){
+          Stage stage= (Stage) ((Node)e.getSource()).getScene().getWindow();
+          double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
+          Toast.showToast(stage, msg, "#FEA1B6", 2000, w, h);
+      }
 
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+      private void abrirMain(ActionEvent event, Usuario usu){
+          try {
 
-            Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
-            stage.setTitle("Sistema de ventas");
-            stage.setResizable(true);
-            stage.setScene(scene);
-            stage.setX(r2d.getMinX());
-            stage.setY(r2d.getMinY());
+              SessionManager.getInstance().setUserId(usu.getIdUsuario());
+              SessionManager.getInstance().setUserName(usu.getUsuario());
+              SessionManager.getInstance().setUserPerfil(usu.getIdPerfil().getNombre());
 
-            StageManager.setPrimaryStage(stage);
-            stage.setWidth(r2d.getWidth());
-            stage.setHeight(r2d.getHeight());
+              AppContext context=AppContext.getInstance();
+              FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/maingui.fxml"));
+              fxmlLoader.setControllerFactory(context::getBean);
+              Screen screen=Screen.getPrimary();
+              Rectangle2D r2d=screen.getVisualBounds();
+              Scene scene = new Scene(fxmlLoader.load(), r2d.getWidth(), r2d.getHeight()-50);
 
-            stage.show();
+              scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
-        }catch (Exception e){
-            throw new RuntimeException(e);
-        }
+              Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
 
-    }
-    public void  logout(ActionEvent e){
-        Platform.exit();
-        System.exit(0);
-        DatabaseConfig.shutdown();
-    }
+              stage.setTitle("Sistema de ventas!");
+              stage.setResizable(true);
+              stage.setScene(scene);
+              stage.setX(r2d.getMinX());
+              stage.setY(r2d.getMinY());
+              StageManager.setPrimaryStage(stage);
+              stage.setWidth( r2d.getWidth());
+              stage.setHeight(r2d.getHeight());
+
+              stage.show();
+
+          } catch (Exception e) {
+              throw new RuntimeException(e);
+          }
+
+      }
+
+      @FXML
+      public void logout(ActionEvent e){
+          Platform.exit();
+          System.exit(0);
+          DatabaseConfig.shutdown();
+      }
+
+
 
 }

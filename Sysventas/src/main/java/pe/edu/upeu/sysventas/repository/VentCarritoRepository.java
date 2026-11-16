@@ -14,11 +14,6 @@ public class VentCarritoRepository extends AbstractJpaRepository<VentCarrito, Lo
     @Override protected String getTableName() { return "vent_carrito"; }
     @Override protected String getPkColumn()  { return "id_carrito"; }
 
-    @Override
-    protected String getShema() {
-        return "public";
-    }
-
     private static final String SELECT_JOIN =
             "SELECT vc.*, p.nombre AS prod_nombre, p.pu AS prod_pu, p.stock AS prod_stock " +
             "FROM vent_carrito vc " +

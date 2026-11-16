@@ -13,11 +13,6 @@ public class ClienteRepository extends AbstractJpaRepository<Cliente, String> {
     @Override protected String getPkColumn()  { return "dniruc"; }
 
     @Override
-    protected String getShema() {
-        return "public";
-    }
-
-    @Override
     protected Cliente mapRow(ResultSet rs) throws SQLException {
         return Cliente.builder()
                 .dniruc(rs.getString("dniruc"))
@@ -27,15 +22,16 @@ public class ClienteRepository extends AbstractJpaRepository<Cliente, String> {
                 .tipoDocumento(TipoDocumento.valueOf(rs.getString("tipo_documento")))
                 .build();
     }
+
     @Override
     protected Cliente insert(Connection conn, Cliente e) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "INSERT INTO cliente(dniruc,nombres,rep_legal,tipo_documento,direccion) VALUES(?,?,?,?,?)")) {
+                "INSERT INTO cliente(dniruc,nombres,rep_legal,tipo_documento, direccion) VALUES(?,?,?,?, ?)")) {
             ps.setString(1, e.getDniruc());
             ps.setString(2, e.getNombres());
             ps.setString(3, e.getRepLegal());
             ps.setString(4, e.getTipoDocumento().name());
-            ps.setString(5,e.getDireccion());
+            ps.setString(5, e.getDireccion());
             ps.executeUpdate();
         }
         return e;

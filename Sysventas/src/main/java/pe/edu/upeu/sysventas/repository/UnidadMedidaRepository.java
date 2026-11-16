@@ -18,14 +18,11 @@ public class UnidadMedidaRepository extends AbstractJpaRepository<UnidMedida, Lo
     protected String getPkColumn() {
         return "id_unidad";
     }
-    @Override
-    protected String getShema() {
-        return "public";
-    }
+
     @Override
     protected UnidMedida insert(Connection connection, UnidMedida entity) throws SQLException {
         long id=executeInsertGetKey(connection,
-                "insert into unid_medida(nombre_medida) values(?)"
+                " insert into unid_medida(nombre_medida) values(?) "
                 , entity.getNombreMedida());
         entity.setIdUnidad(id);
         return entity;
@@ -33,11 +30,12 @@ public class UnidadMedidaRepository extends AbstractJpaRepository<UnidMedida, Lo
 
     @Override
     protected UnidMedida updateRow(Connection connection, UnidMedida entity) throws SQLException {
-        executeUpdate(connection, "updateunid_medida set nombre_medida=? where id_unidad=?",
+        executeUpdate(connection,
+                "update unid_medida set nombre_medida=? where id_unidad=?",
                 entity.getNombreMedida(),
                 entity.getIdUnidad());
-        return entity;
 
+        return entity;
     }
 
     @Override

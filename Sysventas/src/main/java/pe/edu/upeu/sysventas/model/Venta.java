@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@SuperBuilder
 @Data
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Venta extends DocumentoComercial{

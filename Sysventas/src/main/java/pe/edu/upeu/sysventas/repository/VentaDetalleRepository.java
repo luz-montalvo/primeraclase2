@@ -10,12 +10,6 @@ import java.sql.SQLException;
 public class VentaDetalleRepository extends AbstractJpaRepository<VentaDetalle, Long> {
     @Override protected String getTableName() { return "venta_detalle"; }
     @Override protected String getPkColumn()  { return "id_venta_detalle"; }
-
-    @Override
-    protected String getShema() {
-        return "public";
-    }
-
     @Override
     protected VentaDetalle mapRow(ResultSet rs) throws SQLException {
         Venta v = new Venta(); v.setId(rs.getLong("id_venta"));

@@ -30,13 +30,10 @@ public class MainguiController {
 
    @FXML
     BorderPane bp;
-
    @FXML
     MenuBar menuBar;
-
    @FXML
     MenuItem menuItem1, menuItem2;
-
    @FXML
     TabPane tabPane;
 
@@ -57,8 +54,9 @@ public class MainguiController {
 
     @FXML private Menu menuIdioma = new Menu("Idioma");
     ComboBox<String> comboBoxIdioma = new ComboBox<>(
-            FXCollections.observableArrayList("Español", "Ingles","Frances"));
+            FXCollections.observableArrayList("Español", "Ingles", "Frances"));
     CustomMenuItem customItemIdioma = new CustomMenuItem(comboBoxIdioma);
+
    @FXML
    public void initialize(){
        PauseTransition pause = new PauseTransition(Duration.millis(300));
@@ -71,6 +69,7 @@ public class MainguiController {
        graficarMenus();
        bp.setCenter(tabPane);
    }
+
     private List<MenuMenuItenTO> listaAccesos() {
         myresources = util.detectLanguage(userPrefs.get("IDIOMAX", "es"));
         return mmiDao.listaAccesos(SessionManager.getInstance().getUserPerfil(), myresources);
@@ -92,6 +91,18 @@ public class MainguiController {
             default: break;
         }
     }
+
+    private void cambiarIdioma() {
+        String idiomaSeleccionado = comboBoxIdioma.getSelectionModel().getSelectedItem();
+        switch (idiomaSeleccionado) {
+            case "Español": userPrefs.put("IDIOMAX", "es"); break;
+            case "Ingles": userPrefs.put("IDIOMAX", "en"); break;
+            case "Frances": userPrefs.put("IDIOMAX", "fr"); break;
+            default: userPrefs.put("IDIOMAX", "es"); break;
+        }
+        graficarMenus();
+    }
+
     private void graficarMenus() {
         lista = listaAccesos();
         int[] mmi = mmiDao.contarMenuMunuItem(lista);
@@ -107,7 +118,7 @@ public class MainguiController {
             if (!mmix.getMenunombre().equals(menuN)) {
                 menu[menui] = new Menu(mmix.getMenunombre());
                 menu[menui].setId("m" + mmix.getIdNombreObj());
-               // menu[menui].setOnShowing(m::menuSelected);
+                //menu[menui].setOnShowing(m::menuSelected);
                 if (!mmix.getMenuitemnombre().equals("")) {
                     menuItem[menuitem] = new MenuItem(mmix.getMenuitemnombre());
                     menuItem[menuitem].setId("mi" + mmix.getIdNombreObj());
@@ -142,17 +153,6 @@ public class MainguiController {
         menuBar.getMenus().addAll(menuIdioma);
         bp.setTop(menuBar);
     }
-    private void cambiarIdioma() {
-        String idiomaSeleccionado = comboBoxIdioma.getSelectionModel().getSelectedItem();
-        switch (idiomaSeleccionado) {
-            case "Español": userPrefs.put("IDIOMAX", "es"); break;
-            case "Ingles": userPrefs.put("IDIOMAX", "en"); break;
-            case "Frances": userPrefs.put("IDIOMAX", "fr"); break;
-            default: userPrefs.put("IDIOMAX", "es"); break;
-        }
-        graficarMenus();
-    }
-
 
 
     class MenuItemListener{
@@ -161,6 +161,7 @@ public class MainguiController {
         MenuItemListener() {
             menuConfig = mmiDao.accesosAutorizados(lista);
         }
+
         public void handle(ActionEvent e){
             String id=((MenuItem)e.getSource()).getId();//menuItem1
             if(menuConfig.containsKey(id)){
@@ -174,6 +175,7 @@ public class MainguiController {
                 }
             }
         }
+
         private void redireccionar(String fxmlPath) {
             tabPane.getTabs().clear();
             try {

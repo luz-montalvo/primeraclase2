@@ -19,14 +19,11 @@ public class MarcaRepository extends AbstractJpaRepository<Marca,Long >{
     protected String getPkColumn() {
         return "id_marca";
     }
-    @Override
-    protected String getShema() {
-        return "public";
-    }
+
     @Override
     protected Marca insert(Connection connection, Marca entity) throws SQLException {
         long id=executeInsertGetKey(connection,
-                "insert into marca(nombre) values(?)"
+                " insert into marca(nombre) values(?) "
                 , entity.getNombre());
         entity.setIdMarca(id);
         return entity;
@@ -38,12 +35,15 @@ public class MarcaRepository extends AbstractJpaRepository<Marca,Long >{
                 "update marca set nombre=? where id_marca=?",
                 entity.getNombre(),
                 entity.getIdMarca());
-        return entity;    }
+
+        return entity;
+    }
 
     @Override
     protected Marca mapRow(ResultSet rs) throws SQLException {
         return Marca.builder()
-                .idMarca(rs.getLong( "id_marca"))
+                .idMarca(rs.getLong("id_marca"))
                 .nombre(rs.getString("nombre"))
-                .build();    }
+                .build();
+    }
 }

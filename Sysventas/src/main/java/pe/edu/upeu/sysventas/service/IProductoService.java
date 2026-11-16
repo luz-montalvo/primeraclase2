@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IProductoService extends ICrudGenericoService<Producto, Long>{
     List<ComboBoxOption> listarTipoProducto();
-
     List<ModeloDataAutocomplet> listAutoCompletProducto();
+
 }
